@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Messages{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{% if posts %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <p class="body">{{ post['body'] }}</p>
+          <div class="about">posted on {{ post['created'].strftime('%d-%m-%Y %I:%M %p') }}</div>
+        </div>
+        {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('posts.update', id=post['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% else %}
+<article class="post">
+      <header>
+        <div>
+          <p class="body">Right now, you don't have any messages !</p>
+        </div>
+      </header>
+    </article>
+{% endif %}
+<p>In order to get more feedbacks, share this <a href="/{{g.user['username']}}/send">link</a> with your friends ! </p>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Message Sent{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+      <header>
+        <div>
+          <p class="body">Hooray! Your message was successfully sent to {{ user }}!</p>
+        </div>
+      </header>
+    </article>
+{% endblock %}

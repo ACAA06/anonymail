@@ -1,0 +1,17 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter a registered username</title>
+</head>
+<body>
+<script>
+    var person = prompt("Please enter a registered  username", "");
+
+        if (person == null || person == "") {
+            window.location.replace("/");
+        } else {
+           window.location.replace("/"+person+"/send");
+        }
+</script>
+</body>
+</html>
