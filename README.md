@@ -13,7 +13,7 @@ $ git clone https://github.com/rajkumaar23/anonymail.git
 ```
 >The app uses Gmail's SMTP server to send _reset password_ links to an user and hence make sure to create a **secrets.py** and store your gmail credentials as **EMAIL** and **PASSWORD**. 
 ```
-$ FLASK_APP = anonymail FLASK_ENV = development 
+$ FLASK_APP=anonymail FLASK_ENV=development 
 $ flask init-db
 $ flask run
 ````
