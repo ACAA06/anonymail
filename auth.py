@@ -6,6 +6,10 @@ from werkzeug.exceptions import abort
 import smtplib,time
 from itsdangerous import URLSafeTimedSerializer
 from anonymail.db import get_db
+import datetime
+
+now = datetime.datetime.now()
+current_year = now.year
 
 #Retrieving Gmail credentials
 import secrets
@@ -44,7 +48,7 @@ def recover():
             if (session['user_id']):
                 return redirect(url_for('index'))
         except:
-            return render_template('auth/recover.html')
+            return render_template('auth/recover.html', year = current_year)
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -77,7 +81,7 @@ def register():
         if(session['user_id']):
             return redirect(url_for('index'))
     except:
-        return render_template('auth/register.html')
+        return render_template('auth/register.html',year= current_year)
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
@@ -109,7 +113,7 @@ def login():
         if(session['user_id']):
             return redirect(url_for('index'))
     except:
-        return render_template('auth/login.html')
+        return render_template('auth/login.html', year = current_year)
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -159,4 +163,4 @@ def reset(token):
             abort(403,str(e))
 
     else:
-         return render_template('auth/reset.html')
+         return render_template('auth/reset.html', year =current_year)
