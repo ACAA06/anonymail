@@ -5,7 +5,10 @@ from werkzeug.exceptions import abort
 
 from anonymail.auth import login_required
 from anonymail.db import get_db
+import datetime
 
+now = datetime.datetime.now()
+current_year = now.year
 bp = Blueprint('posts', __name__)
 
 @bp.route('/')
@@ -19,7 +22,7 @@ def index():
         ' WHERE u.id = {}'
         ' ORDER BY created DESC'.format(user_id)
     ).fetchall()
-    return render_template('posts/index.html', posts=posts)
+    return render_template('posts/index.html', posts=posts, year=current_year)
 
 @bp.route('/<string:username>/send', methods=('GET', 'POST'))
 def create(username):
