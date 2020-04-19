@@ -8,7 +8,7 @@ from . import auth
 from . import db
 from . import posts
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_mapping(
     SECRET_KEY=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(16)),
     DATABASE=os.path.join(app.instance_path, 'anonymail.sqlite'))
