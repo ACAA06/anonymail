@@ -12,10 +12,11 @@ pip install Werkzeug itsdangerous click Flask
 $ git clone https://github.com/rajkumaar23/anonymail.git
 ```
 >The app uses Gmail's SMTP server to send _reset password_ links to an user and hence make sure to create a **secrets.py** and store your gmail credentials as **EMAIL** and **PASSWORD**. 
-```
-$ FLASK_APP=app FLASK_ENV=development 
-$ flask init-db
-$ flask run
+```bash
+cd anonymail/
+FLASK_APP=app FLASK_ENV=development 
+flask init-db
+flask run
 ````
  and you're good to go. 
  server will be live at `http://localhost:5000`
