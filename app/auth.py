@@ -47,10 +47,9 @@ def recover():
             s.sendmail(sender, rec, message)
             return render_template('auth/mailsent.html', user=username)
     else:
-        try:
-            if 'user_id' in session:
-                return redirect(url_for('index'))
-        except:
+        if 'user_id' in session:
+            return redirect(url_for('index'))
+        else:
             return render_template('auth/recover.html', year=current_year)
 
 
@@ -81,20 +80,18 @@ def register():
             return redirect(url_for('auth.login'))
 
         flash(error)
-    try:
-        if ('user_id' in session):
-            return redirect(url_for('index'))
-    except:
+    if 'user_id' in session:
+        return redirect(url_for('index'))
+    else:
         return render_template('auth/register.html', year=current_year)
 
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        try:
-            if 'user_id' in session:
-                return redirect(url_for('index'))
-        except:
+        if 'user_id' in session:
+            return redirect(url_for('index'))
+        else:
             username = request.form['username']
             password = request.form['password']
             db = get_db()
@@ -114,10 +111,9 @@ def login():
                 return redirect(url_for('index'))
 
             flash(error)
-    try:
-        if 'user_id' in session:
-            return redirect(url_for('index'))
-    except:
+    if 'user_id' in session:
+        return redirect(url_for('index'))
+    else:
         return render_template('auth/login.html', year=current_year)
 
 
@@ -168,7 +164,7 @@ def reset(token):
             else:
                 flash('Both passwords are not same')
                 return render_template('auth/reset.html')
-        except  Exception as e:
+        except Exception as e:
             abort(403, str(e))
 
     else:
