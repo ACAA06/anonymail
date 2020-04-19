@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.exceptions import abort
 import smtplib,time
 from itsdangerous import URLSafeTimedSerializer
-from anonymail.db import get_db
+from app.db import get_db
 import datetime
 
 now = datetime.datetime.now()

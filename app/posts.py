@@ -3,8 +3,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from anonymail.auth import login_required
-from anonymail.db import get_db
+from app.auth import login_required
+from app.db import get_db
 import datetime
 
 now = datetime.datetime.now()
